@@ -6,7 +6,7 @@ import Details from '@/views/Details.vue';
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',  <-- This line is removed
   routes: [
     {
       path: '/',
