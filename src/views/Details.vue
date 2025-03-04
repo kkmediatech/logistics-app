@@ -1,4 +1,3 @@
-// src/views/Details.vue
 <template>
   <div class="app-wrapper" :class="{ hideSidebar: !sidebarOpen }">
     <Sidebar :open="sidebarOpen" @toggle-sidebar="toggleSidebar" />
@@ -6,11 +5,16 @@
       <Navbar :sidebar-open="sidebarOpen" @toggle-sidebar="toggleSidebar" />
       <div class="app-main">
         <div class="details">
-          <h1>รายละเอียดงาน: {{ route }}</h1>
-          <p>ภูมิภาค: {{ region }}</p>
-          <p>ชนิดของรถ: {{ vehicleType }}</p>
-          <p>ระยะทาง: {{ distance }} KM</p>
-          <p>ค่าเที่ยว: {{ fare }} บาท</p>
+          <template v-if="job">
+            <h1>รายละเอียดงาน: {{ job.route }}</h1>
+            <p>ภูมิภาค: {{ job.region }}</p>
+            <p>ชนิดของรถ: {{ job.vehicleType }}</p>
+            <p>ระยะทาง: {{ job.distance }} KM</p>
+            <p>ค่าเที่ยว: {{ job.fare }} บาท</p>
+          </template>
+          <template v-else>
+            <h1>ไม่พบข้อมูลงาน</h1>
+          </template>
           <el-button type="primary" @click="$router.push('/')">กลับไปหน้าแรก</el-button>
         </div>
       </div>
@@ -24,32 +28,32 @@ import Navbar from "@/components/Navbar.vue";
 
 export default {
   name: "Details",
+  props: {
+    id: {
+      type: Number,
+      required: true,
+    },
+    jobs: {
+      type: Array,
+      required: true,
+    }
+  },
   components: { Sidebar, Navbar },
   data() {
     return {
       sidebarOpen: true,
+      job: null,
     };
   },
-  computed: {
-    route() {
-      return this.$route.query.route || "ไม่ระบุ";
-    },
-    region() {
-      return this.$route.query.region || "ไม่ระบุ";
-    },
-    vehicleType() {
-      return this.$route.query.vehicleType || "ไม่ระบุ";
-    },
-    distance() {
-      return this.$route.query.distance || "ไม่ระบุ";
-    },
-    fare() {
-      return this.$route.query.fare || "ไม่ระบุ";
-    },
+  created() {
+    this.findJob();
   },
   methods: {
     toggleSidebar() {
       this.sidebarOpen = !this.sidebarOpen;
+    },
+    findJob() {
+      this.job = this.jobs.find(job => job.id === this.id);
     },
   },
 };
