@@ -142,6 +142,9 @@ export default {
       isCaptchaSolved: false,
     };
   },
+  created() {
+    this.generateInitialData(); // Call this function to generate initial data
+  },
   methods: {
     openDialog(row) {
       //This will get the row from the event
@@ -202,10 +205,15 @@ export default {
         });
       }, randomTime);
     },
+
+    generateInitialData() {
+      this.tableData = this.generateNewData(5); // Generate 5 initial rows
+    },
+
     generateNewData() {
       // ฟังก์ชันจำลองการสร้างข้อมูลใหม่
       const newTableData = [];
-      const maxId = 10;
+      const maxId = 5 + numRows; //start from 6
       const prefixRoute = this.generateRoutePrefix();
 
       for (let i = 6; i <= maxId; i++) {
