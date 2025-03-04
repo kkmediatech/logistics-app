@@ -210,7 +210,7 @@ export default {
       this.tableData = this.generateNewData(5); // Generate 5 initial rows
     },
 
-    generateNewData() {
+    generateNewData(numRows) {
       // ฟังก์ชันจำลองการสร้างข้อมูลใหม่
       const newTableData = [];
       const maxId = 5 + numRows; //start from 6
