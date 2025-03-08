@@ -208,7 +208,7 @@ export default {
     },
     showRandomNotification() {
       // ฟังก์ชันสำหรับแสดง Notification แบบสุ่มเวลา
-      const randomTime = Math.floor(Math.random() * 3000) + 1000; // สุ่มเวลา 1000-5000ms (1-3 วินาที)
+      const randomTime = Math.floor(Math.random() * 4000) + 1000; // สุ่มเวลา 1000-5000ms (1-3 วินาที)
       setTimeout(() => {
         ElNotification({ // Use ElNotification here
           title: "อัพเดตงานแข่งขัน",
