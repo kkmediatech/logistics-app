@@ -23,7 +23,12 @@
                 </el-select>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" size="mini" @click="fetchData">ค้นหา</el-button>
+                <el-button 
+                  type="primary" 
+                  size="mini" 
+                  @click="handleSearch"
+                  :class="{ 'button-clicked': isSearching }"
+                >ค้นหา</el-button>
               </el-form-item>
             </el-form>
             <JobTable :tableData="tableData" @open-dialog="openDialog" />
@@ -140,6 +145,7 @@ export default {
       selectedRow: {},
       turnstileWidgetId: null,
       isCaptchaSolved: false,
+      isSearching: false,
     };
   },
   created() {
@@ -181,6 +187,13 @@ export default {
     },
     toggleSidebar() {
       this.sidebarOpen = !this.sidebarOpen;
+    },
+    handleSearch() {
+      this.isSearching = true;
+      this.fetchData();
+      setTimeout(() => {
+        this.isSearching = false;
+      }, 500);
     },
     // Method ใหม่สำหรับดึงข้อมูล
     fetchData() {
@@ -280,7 +293,7 @@ export default {
     // สุ่มเวลาคาดว่าที่จะถึง
     getRandomExpectedArrival() {
       const time = new Date();
-      time.setDate(time.getDate() + Math.floor(Math.random() * 7) + 1);
+      time.setDate(time.getDate() + Math.random() * 7 + 1);
       time.setHours(this.getRandomHours());
       time.setMinutes(this.getRandomMinutes());
       return time.toLocaleString("en-GB");
@@ -367,5 +380,10 @@ export default {
 
 .sidebar-container {
   width: 54px;
+}
+
+.button-clicked {
+  background-color: #409EFF !important;
+  opacity: 0.8;
 }
 </style>
