@@ -31,7 +31,18 @@
                 >ค้นหา</el-button>
               </el-form-item>
             </el-form>
-            <JobTable :tableData="tableData" @open-dialog="openDialog" />
+            <JobTable :tableData="paginatedTableData" @open-dialog="openDialog" />
+            
+            <!-- Add pagination -->
+            <div class="pagination-container">
+              <el-pagination
+                @current-change="handlePageChange"
+                :current-page.sync="currentPage"
+                :page-size="pageSize"
+                layout="prev, pager, next"
+                :total="tableData.length">
+              </el-pagination>
+            </div>
 
             <el-dialog
               title="ยืนยันแข่งขันรับงาน"
@@ -140,13 +151,23 @@ export default {
       activeTab: "grab",
       region: "",
       vehicleType: "",
-      tableData: [...initialTableData], // กำหนด tableData เริ่มต้นด้วยข้อมูลชุดนี้
+      tableData: [...initialTableData],
       dialogVisible: false,
       selectedRow: {},
       turnstileWidgetId: null,
       isCaptchaSolved: false,
       isSearching: false,
+      currentPage: 1,
+      pageSize: 8,
+      allRoutes: new Set(), // Track unique routes
     };
+  },
+  computed: {
+    paginatedTableData() {
+      const start = (this.currentPage - 1) * this.pageSize;
+      const end = start + this.pageSize;
+      return this.tableData.slice(start, end);
+    }
   },
   created() {
     this.generateInitialData(); // Call this function to generate initial data
@@ -195,6 +216,9 @@ export default {
         this.isSearching = false;
       }, 500);
     },
+    handlePageChange(page) {
+      this.currentPage = page;
+    },
     // Method ใหม่สำหรับดึงข้อมูล
     fetchData() {
       console.log("ค้นหาด้วย:", this.region, this.vehicleType);
@@ -226,22 +250,36 @@ export default {
     generateNewData(numRows) {
       // ฟังก์ชันจำลองการสร้างข้อมูลใหม่
       const newTableData = [];
-      const maxId = 5 + numRows; //start from 6
-      const prefixRoute = this.generateRoutePrefix();
+      // จำกัดจำนวนแถวไม่เกิน 100 รูปแบบ
+      const remainingRoutes = 100 - this.allRoutes.size;
+      const maxRows = Math.min(numRows || 5, remainingRoutes);
+      const maxId = this.tableData.length + maxRows;
+      
+      let attempts = 0;
+      const maxAttempts = 1000; // ป้องกันการวนลูปไม่สิ้นสุด
 
-      for (let i = 6; i <= maxId; i++) {
-        // ข้อมูลเริ่มต้นมี id 1-5 และสร้างข้อมูลใหม่เริ่มต้น 6
-        newTableData.push({
-          id: i,
-          route: `${prefixRoute}-${this.generateRouteSuffix(i)}`, // สร้างรูปแบบ ROUTE1-ROUTE7
-          region: this.getRandomRegion(),
-          vehicleType: this.getRandomVehicleType(),
-          distance: this.getRandomDistance(),
-          endTime: this.getRandomEndTime(),
-          remainingTime: this.getRandomRemainingTime(),
-          expectedArrival: this.getRandomExpectedArrival(),
-          fare: this.getRandomFare(),
-        });
+      for (let i = this.tableData.length + 1; i <= maxId && attempts < maxAttempts;) {
+        const prefixRoute = this.generateRoutePrefix();
+        const suffixRoute = this.generateRouteSuffix(i);
+        const route = `${prefixRoute}-${suffixRoute}`;
+
+        // ตรวจสอบว่าเส้นทางซ้ำหรือไม่
+        if (!this.allRoutes.has(route)) {
+          this.allRoutes.add(route);
+          newTableData.push({
+            id: i,
+            route: route,
+            region: this.getRandomRegion(),
+            vehicleType: this.getRandomVehicleType(),
+            distance: this.getRandomDistance(),
+            endTime: this.getRandomEndTime(),
+            remainingTime: this.getRandomRemainingTime(),
+            expectedArrival: this.getRandomExpectedArrival(),
+            fare: this.getRandomFare(),
+          });
+          i++;
+        }
+        attempts++;
       }
       return newTableData;
     },
@@ -385,5 +423,11 @@ export default {
 .button-clicked {
   background-color: #409EFF !important;
   opacity: 0.8;
+}
+
+.pagination-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 </style>
