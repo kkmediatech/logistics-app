@@ -1,0 +1,246 @@
+{
+  "routes": [
+    {
+      "id": 1,
+      "route": "AYUU-2KHT",
+      "region": "B",
+      "vehicleType": "6W7.2",
+      "distance": 156,
+      "endTime": "20-03-2025 19:00",
+      "remainingTime": "4h 7m",
+      "expectedArrival": "20-03-2025 20:00",
+      "fare": 1820
+    },
+    {
+      "id": 2,
+      "route": "2LFP-BPLL",
+      "region": "C",
+      "vehicleType": "6W7.2",
+      "distance": 187,
+      "endTime": "20-03-2025 19:30",
+      "remainingTime": "4h 37m",
+      "expectedArrival": "20-03-2025 20:30",
+      "fare": 2140
+    },
+    {
+      "id": 3,
+      "route": "AYUU-2LLK",
+      "region": "B",
+      "vehicleType": "4W",
+      "distance": 143,
+      "endTime": "20-03-2025 18:30",
+      "remainingTime": "3h 37m",
+      "expectedArrival": "20-03-2025 19:30",
+      "fare": 1680
+    },
+    {
+      "id": 4,
+      "route": "TCG-AYUU",
+      "region": "NE",
+      "vehicleType": "6W7.2",
+      "distance": 198,
+      "endTime": "20-03-2025 20:00",
+      "remainingTime": "5h 7m",
+      "expectedArrival": "20-03-2025 21:00",
+      "fare": 2250
+    },
+    {
+      "id": 5,
+      "route": "5BTG-CT1",
+      "region": "B",
+      "vehicleType": "4WJ",
+      "distance": 167,
+      "endTime": "20-03-2025 19:15",
+      "remainingTime": "4h 22m",
+      "expectedArrival": "20-03-2025 20:15",
+      "fare": 1950
+    },
+    {
+      "id": 6,
+      "route": "2BSTG-CT1",
+      "region": "C",
+      "vehicleType": "6W7.2",
+      "distance": 145,
+      "endTime": "20-03-2025 18:45",
+      "remainingTime": "3h 52m",
+      "expectedArrival": "20-03-2025 19:45",
+      "fare": 1720
+    },
+    {
+      "id": 7,
+      "route": "2BST04-BAGH",
+      "region": "C",
+      "vehicleType": "4WJ",
+      "distance": 178,
+      "endTime": "20-03-2025 19:45",
+      "remainingTime": "4h 52m",
+      "expectedArrival": "20-03-2025 20:45",
+      "fare": 2080
+    },
+    {
+      "id": 8,
+      "route": "5NOG-AYUU",
+      "region": "B",
+      "vehicleType": "4W",
+      "distance": 134,
+      "endTime": "20-03-2025 18:15",
+      "remainingTime": "3h 22m",
+      "expectedArrival": "20-03-2025 19:15",
+      "fare": 1580
+    },
+    {
+      "id": 9,
+      "route": "AYUU-2NON",
+      "region": "NE",
+      "vehicleType": "4W",
+      "distance": 189,
+      "endTime": "20-03-2025 19:30",
+      "remainingTime": "4h 37m",
+      "expectedArrival": "20-03-2025 20:30",
+      "fare": 2180
+    },
+    {
+      "id": 10,
+      "route": "CT1-BOP-SYG",
+      "region": "B",
+      "vehicleType": "4WJ",
+      "distance": 165,
+      "endTime": "20-03-2025 19:00",
+      "remainingTime": "4h 7m",
+      "expectedArrival": "20-03-2025 20:00",
+      "fare": 1920
+    },
+    {
+      "id": 11,
+      "route": "CT1-SWC",
+      "region": "C",
+      "vehicleType": "6W7.2",
+      "distance": 156,
+      "endTime": "20-03-2025 18:30",
+      "remainingTime": "3h 37m",
+      "expectedArrival": "20-03-2025 19:30",
+      "fare": 1840
+    },
+    {
+      "id": 12,
+      "route": "2LSW02-AYUU",
+      "region": "NE",
+      "vehicleType": "6W7.2",
+      "distance": 192,
+      "endTime": "20-03-2025 19:45",
+      "remainingTime": "4h 52m",
+      "expectedArrival": "20-03-2025 20:45",
+      "fare": 2220
+    },
+    {
+      "id": 13,
+      "route": "5SAS-NO5",
+      "region": "B",
+      "vehicleType": "4WJ",
+      "distance": 145,
+      "endTime": "20-03-2025 18:15",
+      "remainingTime": "3h 22m",
+      "expectedArrival": "20-03-2025 19:15",
+      "fare": 1720
+    },
+    {
+      "id": 14,
+      "route": "2PED-BKKC",
+      "region": "NE",
+      "vehicleType": "6W7.2",
+      "distance": 176,
+      "endTime": "20-03-2025 19:30",
+      "remainingTime": "4h 37m",
+      "expectedArrival": "20-03-2025 20:30",
+      "fare": 2050
+    },
+    {
+      "id": 15,
+      "route": "NE2-NE6",
+      "region": "B",
+      "vehicleType": "6W7.2",
+      "distance": 167,
+      "endTime": "20-03-2025 19:00",
+      "remainingTime": "4h 7m",
+      "expectedArrival": "20-03-2025 20:00",
+      "fare": 1950
+    },
+    {
+      "id": 16,
+      "route": "AYUU-2DMK",
+      "region": "NE",
+      "vehicleType": "4WJ",
+      "distance": 154,
+      "endTime": "20-03-2025 18:45",
+      "remainingTime": "3h 52m",
+      "expectedArrival": "20-03-2025 19:45",
+      "fare": 1820
+    },
+    {
+      "id": 17,
+      "route": "2MYP01-EA1",
+      "region": "B",
+      "vehicleType": "6W7.2",
+      "distance": 187,
+      "endTime": "20-03-2025 19:15",
+      "remainingTime": "4h 22m",
+      "expectedArrival": "20-03-2025 20:15",
+      "fare": 2150
+    },
+    {
+      "id": 18,
+      "route": "2AYU01-AYUU",
+      "region": "NE",
+      "vehicleType": "4WJ",
+      "distance": 143,
+      "endTime": "20-03-2025 18:30",
+      "remainingTime": "3h 37m",
+      "expectedArrival": "20-03-2025 19:30",
+      "fare": 1680
+    },
+    {
+      "id": 19,
+      "route": "5BKU02-AYUU",
+      "region": "C",
+      "vehicleType": "6W7.2",
+      "distance": 198,
+      "endTime": "20-03-2025 19:45",
+      "remainingTime": "4h 52m",
+      "expectedArrival": "20-03-2025 20:45",
+      "fare": 2280
+    },
+    {
+      "id": 20,
+      "route": "NO4-CT1",
+      "region": "NE",
+      "vehicleType": "4WJ",
+      "distance": 165,
+      "endTime": "20-03-2025 19:00",
+      "remainingTime": "4h 7m",
+      "expectedArrival": "20-03-2025 20:00",
+      "fare": 1920
+    },
+    {
+      "id": 21,
+      "route": "PDT-BURT",
+      "region": "B",
+      "vehicleType": "6W7.2",
+      "distance": 176,
+      "endTime": "20-03-2025 18:15",
+      "remainingTime": "3h 22m",
+      "expectedArrival": "20-03-2025 19:15",
+      "fare": 2050
+    },
+    {
+      "id": 22,
+      "route": "RBN-LAS",
+      "region": "NE",
+      "vehicleType": "4W",
+      "distance": 156,
+      "endTime": "20-03-2025 19:30",
+      "remainingTime": "4h 37m",
+      "expectedArrival": "20-03-2025 20:30",
+      "fare": 1840
+    }
+  ]
+}

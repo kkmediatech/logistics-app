@@ -1,16 +1,23 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/views/Home.vue';
+import GrabSingle from '@/views/GrabSingle.vue';
+import Home from '@/views/Home.vue'; 
 import Details from '@/views/Details.vue';
 
 Vue.use(Router);
 
 export default new Router({
-  // mode: 'history',  <-- This line is removed
   routes: [
     {
       path: '/',
+      name: 'Home',
       component: Home,
+    },
+    {
+      path: '/grab-single',
+      name: 'GrabSingle',
+      component: GrabSingle,
+      props: true,
     },
     {
       path: '/details/:id',
@@ -18,6 +25,7 @@ export default new Router({
       component: Details,
       props: true,
     },
+
     {
       path: '*',
       redirect: '/',

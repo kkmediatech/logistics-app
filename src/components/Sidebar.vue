@@ -1,13 +1,55 @@
 <template>
-  <div class="sidebar-container">
-    <el-menu :collapse="true" class="el-menu--collapse">
-      <el-menu-item index="1" @click="$router.push('/')">
-        <i class="el-icon-house"></i>
-        <span slot="title">Home</span>
+  <div class="sidebar-container" :class="{ 'sidebar-collapsed': !open }">
+    <router-link to="/" class="sidebar-logo" @click="$emit('toggle-sidebar')">
+      <img src="../assets/logo.png" alt="Logo" />
+    </router-link>
+    <div class="sidebar-search">
+      <el-input
+        v-model="searchQuery"
+        placeholder="ค้นหา..."
+        prefix-icon="el-icon-search"
+        size="mini"
+        clearable
+      />
+    </div>
+    <el-menu
+      :collapse="!open"
+      class="el-menu-vertical-demo"
+      background-color="#ffffff"
+      text-color="#000000"
+      active-text-color="#409eff"
+      :default-active="$route.path"
+      mode="vertical"
+    >
+      <el-menu-item>
+        <router-link to="/transport-job" @click="$emit('toggle-sidebar')">
+        <i class="el-icon-s-order"></i>
+          <span>ตารางจัดการงานขนส่ง</span>
+        </router-link>
       </el-menu-item>
-      <el-menu-item index="2" @click="$router.push('/')">
-        <i class="el-icon-document"></i>
-        <span slot="title">แข่งขันรับงาน</span>
+      <el-menu-item>
+        <router-link to="/abnormality" @click="$emit('toggle-sidebar')">
+        <i class="el-icon-warning"></i>
+          <span>การจัดการความผิดปกติ</span>
+        </router-link>
+      </el-menu-item>
+      <el-menu-item>
+        <router-link to="/account" @click="$emit('toggle-sidebar')">
+        <i class="el-icon-user"></i>
+          <span>การจัดการบัญชี</span>
+        </router-link>
+      </el-menu-item>
+      <el-menu-item>
+        <router-link to="/grab-single" @click="$emit('toggle-sidebar')">
+        <i class="el-icon-s-flag"></i>
+          <span>แข่งขันรับงาน</span>
+        </router-link>
+      </el-menu-item>
+      <el-menu-item>
+        <router-link to="/transport-company" @click="$emit('toggle-sidebar')">
+        <i class="el-icon-office-building"></i>
+          <span>การจัดการบริษัทขนส่ง</span>
+        </router-link>
       </el-menu-item>
     </el-menu>
   </div>
@@ -15,32 +57,84 @@
 
 <script>
 export default {
-
+  props: {
+    open: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  data() {
+    return {
+      searchQuery: "",
+    };
+  },
 };
 </script>
 
 <style scoped>
 .sidebar-container {
-  width: 54px; /* คงที่ 54px ตลอด */
-  background: #ffffff; /* เปลี่ยนเป็นสีขาว */
-  color: #000000; /* เปลี่ยนสีข้อความเป็นสีดำเพื่อให้มองเห็นชัดเจน */
+  width: 220px;
+  background: #ffffff;
+  color: #000000;
   transition: width 0.3s;
+  height: 100vh;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
 }
 
-.el-menu--collapse {
+.sidebar-collapsed {
   width: 54px;
 }
 
-/* ปรับสีข้อความในเมนูให้ชัดเจนบนพื้นหลังสีขาว */
-.el-menu-item,
-.el-submenu__title {
-  color: #000000; /* สีข้อความในเมนู */
+.sidebar-logo {
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
-/* ปรับสีเมื่อ hover หรือ active */
+.sidebar-logo img {
+  width: 80%;
+  max-height: 50px;
+}
+
+.sidebar-search {
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 220px;
+  min-height: 400px;
+}
+
+.el-menu-item,
+.el-submenu__title {
+  color: #000000;
+  text-decoration: none; /* เพิ่มบรรทัดนี้ */
+}
+
 .el-menu-item:hover,
 .el-menu-item.is-active {
-  background-color: #f0f0f0; /* สีพื้นหลังเมื่อ hover หรือเลือก */
-  color: #409eff; /* สีข้อความเมื่อ hover หรือเลือก */
+  background-color: #f0f0f0;
+  color: #409eff;
+  text-decoration: none; /* เพิ่มบรรทัดนี้ */
+}
+
+.el-menu--collapse .el-menu-item span {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  display: inline-block;
+}
+
+.el-menu-item.is-active {
+  background-color: #e1f0ff;
 }
 </style>
